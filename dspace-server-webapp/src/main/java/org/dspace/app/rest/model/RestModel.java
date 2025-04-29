@@ -21,6 +21,7 @@ public interface RestModel extends Serializable {
 
     public static final String ROOT = "root";
     public static final String CONTENT_REPORT = "contentreport";
+    public static final String REF_REPORT = "refreport";
     public static final String CORE = "core";
     public static final String EPERSON = "eperson";
     public static final String DISCOVER = "discover";

@@ -98,11 +98,6 @@ public class RefReportRestController implements InitializingBean {
                 Item dspaceItem = items.next();
 
                 if(checkItem(dspaceItem, author, startDate, endDate))	{
-                    //String con_author = getMetadata(itemService.getMetadata(dspaceItem, "dc", "contributor","author", Item.ANY));
-                    //String dateAccepted = getMetadata(itemService.getMetadata(dspaceItem, "refterms", "dateAccepted",null, Item.ANY));
-                    //String dateIssued = getMetadata(itemService.getMetadata(dspaceItem, "dc", "date", "issued", Item.ANY));
-                    //String dateFCD = getMetadata(itemService.getMetadata(dspaceItem, "refterms", "dateFCD", null, Item.ANY));
-
                     filteredItems.add(dspaceItem);
                     rows += 1;
 

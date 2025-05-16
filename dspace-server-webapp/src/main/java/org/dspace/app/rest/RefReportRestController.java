@@ -74,8 +74,14 @@ public class RefReportRestController implements InitializingBean {
         log.info("Start of RefReport");
         log.info("getRefItems field: '{}' author: '{}' startDate: '{}', endDate: '{}'", field, author, startDateString, endDateString);
 
-        Date startDate = getDate(startDateString);
-        Date endDate = getDate(endDateString);
+        Date startDate = null;
+        if (startDateString != null) {
+            startDate = getDate(startDateString);
+        }
+        Date endDate = null;
+        if(endDateString != null) {
+            endDate = getDate(endDateString);
+        }
 
         log.info("Dates 'created'");
         int rows = 0;
@@ -98,13 +104,16 @@ public class RefReportRestController implements InitializingBean {
                 Item dspaceItem = items.next();
 
                 if(checkItem(dspaceItem, author, startDate, endDate))	{
+                    log.info("Adding Item: " + dspaceItem.getName());
                     filteredItems.add(dspaceItem);
+                    log.info("Added Item");
                     rows += 1;
 
                 }
             }
 
             log.info("We have found {} items", rows);
+            log.info("No of filtered Items found: {}", filteredItems.size());
             log.info("Add items to report");
 
             filteredItems.stream()

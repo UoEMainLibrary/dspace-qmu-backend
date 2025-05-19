@@ -57,6 +57,7 @@ public class FilteredItemConverter {
     private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(FilteredItemConverter.class);
 
     public FilteredItemRest convert(Item obj, Projection projection) {
+        log.info("Start to convert item: {}", obj.getName());
         FilteredItemRest item = new FilteredItemRest();
 
         item.setHandle(obj.getHandle());
@@ -84,6 +85,7 @@ public class FilteredItemConverter {
             .map(coll -> collectionConverter.convert(coll, Projection.DEFAULT))
             .ifPresent(item::setOwningCollection);
 
+        log.info("Start to convert item: {}", obj.getName());
         return item;
     }
 

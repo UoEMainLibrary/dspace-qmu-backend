@@ -121,6 +121,8 @@ public class RefReportRestController implements InitializingBean {
             report.setItemCount(rows);
 
             log.info("Create the filtered items rest");
+            log.info("No of items in report found1: {}", report.getItemCount());
+            log.info("No of items in report found2: {}", report.getItems().size());
             List<FilteredItemRest> filteredItemsRest = report.getItems().stream()
                     .map(item -> itemConverter.convert(item, Projection.DEFAULT))
                     .collect(Collectors.toList());

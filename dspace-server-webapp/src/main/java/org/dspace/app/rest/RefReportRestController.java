@@ -13,12 +13,18 @@ import org.dspace.app.rest.model.hateoas.FilteredItemsResource;
 import org.dspace.app.rest.projection.Projection;
 import org.dspace.app.rest.utils.ContextUtil;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.content.Collection;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataField;
+import org.dspace.content.MetadataSchema;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.MetadataFieldService;
+import org.dspace.content.service.MetadataSchemaService;
 import org.dspace.contentreport.FilteredItems;
+import org.dspace.contentreport.QueryOperator;
+import org.dspace.contentreport.QueryPredicate;
 import org.dspace.contentreport.service.ContentReportService;
 import org.dspace.core.Context;
 import org.springframework.beans.factory.InitializingBean;
@@ -38,10 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -62,6 +65,11 @@ public class RefReportRestController implements InitializingBean {
     private ItemService itemService;
     @Autowired
     MetadataFieldService metadataFieldService;
+    @Autowired
+    MetadataSchemaService metadataSchemaService;
+    @Autowired
+    CollectionService collectionService;
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/refitems")
@@ -89,27 +97,62 @@ public class RefReportRestController implements InitializingBean {
         List<Item> filteredItems = new ArrayList<>();
         try {
             MetadataField mdf;
-            Iterator<Item> items;
+            Iterator<Item> items = null;
             if (StringUtils.isNotEmpty(field)) {
                 log.info("Get the items via field: {}", field);
                 mdf = metadataFieldService.find(context, Integer.parseInt(field));
                 items = itemService.findByMetadataField(context, mdf.getMetadataSchema().getName(), mdf.getElement(), mdf.getQualifier(), Item.ANY);
-            } else {
-                log.info("Get the items for all fields");
-                items = itemService.findAll(context);
+            } if (StringUtils.isNotEmpty(author)) {
+                log.info("Get the items for Author metadata {}", author);
+                MetadataSchema schemaDC = metadataSchemaService.find(context, "dc");
+                MetadataField fieldAuthor = metadataFieldService.findByElement(context, schemaDC, "contributor", "author");
+                QueryPredicate predicate = QueryPredicate.of(fieldAuthor, QueryOperator.MATCHES, ".*" + author + ".*");
+                List<Collection> collections = collectionService.findAll(context);
+                List<UUID> uuids = collections.stream()
+                        .map(Collection::getID)
+                        .toList();
+                items = itemService.findByMetadataQuery(context, List.of(predicate), uuids, 0, -1).iterator();
+            } if (StringUtils.isNotEmpty(endDateString)) {
+                items = null;
+            } if (StringUtils.isNotEmpty(startDateString)) {
+                items = null;
             }
 
             log.info("Parse the items");
-            while(items.hasNext())	{
+            while (items.hasNext()) {
+                log.info("Start Parsing the items: ");
                 Item dspaceItem = items.next();
-
-                if(checkItem(dspaceItem, author, startDate, endDate))	{
+                log.info("Parsing the item: {} ", dspaceItem.getName());
+                //Need to tweak this as the authors should be filtered from the query now
+                if (StringUtils.isNotEmpty(field)) {
                     log.info("Adding Item: " + dspaceItem.getName());
                     filteredItems.add(dspaceItem);
                     log.info("Added Item");
                     rows += 1;
+                    //if (checkItem(dspaceItem, author, startDate, endDate)) {
+                    //    log.info("Adding Item: " + dspaceItem.getName());
+                    //    filteredItems.add(dspaceItem);
+                    //    log.info("Added Item");
+                    //    rows += 1;
+                    //}
+                } else if (StringUtils.isNotEmpty(author)) {
+                    log.info("Adding Item: " + dspaceItem.getName());
+                    filteredItems.add(dspaceItem);
+                    log.info("Added Item");
+                    rows += 1;
+                } else if (StringUtils.isNotEmpty(endDateString)) {
 
-                }
+                } else if (StringUtils.isNotEmpty(startDateString)) {
+
+                } //else {
+                    //if (checkItem(dspaceItem, author, startDate, endDate)) {
+                    //    log.info("Adding Item: " + dspaceItem.getName());
+                    //    filteredItems.add(dspaceItem);
+                    //    log.info("Added Item");
+                    //    rows += 1;
+
+                    //}
+                //}
             }
 
             log.info("We have found {} items", rows);

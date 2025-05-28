@@ -85,7 +85,7 @@ public class FilteredItemConverter {
             .map(coll -> collectionConverter.convert(coll, Projection.DEFAULT))
             .ifPresent(item::setOwningCollection);
 
-        log.info("Start to convert item: {}", obj.getName());
+        log.info("End of convert item: {}", obj.getName());
         return item;
     }
 

@@ -13,11 +13,8 @@ import org.dspace.app.rest.model.hateoas.FilteredItemsResource;
 import org.dspace.app.rest.projection.Projection;
 import org.dspace.app.rest.utils.ContextUtil;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.content.*;
 import org.dspace.content.Collection;
-import org.dspace.content.Item;
-import org.dspace.content.MetadataField;
-import org.dspace.content.MetadataSchema;
-import org.dspace.content.MetadataValue;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.MetadataFieldService;
@@ -27,6 +24,7 @@ import org.dspace.contentreport.QueryOperator;
 import org.dspace.contentreport.QueryPredicate;
 import org.dspace.contentreport.service.ContentReportService;
 import org.dspace.core.Context;
+import org.dspace.discovery.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ControllerUtils;
@@ -64,12 +62,13 @@ public class RefReportRestController implements InitializingBean {
     @Autowired
     private ItemService itemService;
     @Autowired
-    MetadataFieldService metadataFieldService;
+    private MetadataFieldService metadataFieldService;
     @Autowired
-    MetadataSchemaService metadataSchemaService;
+    private MetadataSchemaService metadataSchemaService;
     @Autowired
-    CollectionService collectionService;
-
+    private CollectionService collectionService;
+    @Autowired
+    private SearchService searchService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/refitems")
@@ -82,16 +81,16 @@ public class RefReportRestController implements InitializingBean {
         log.info("Start of RefReport");
         log.info("getRefItems field: '{}' author: '{}' startDate: '{}', endDate: '{}'", field, author, startDateString, endDateString);
 
-        Date startDate = null;
-        if (startDateString != null) {
-            startDate = getDate(startDateString);
-        }
-        Date endDate = null;
-        if(endDateString != null) {
-            endDate = getDate(endDateString);
-        }
+        //Date startDate = null;
+        //if (startDateString != null) {
+        //    startDate = getDate(startDateString);
+        //}
+        //Date endDate = null;
+        //if(endDateString != null) {
+        //    endDate = getDate(endDateString);
+        //}
 
-        log.info("Dates 'created'");
+        //log.info("Dates 'created'");
         int rows = 0;
         FilteredItems report = new FilteredItems();
         List<Item> filteredItems = new ArrayList<>();
@@ -104,18 +103,15 @@ public class RefReportRestController implements InitializingBean {
                 items = itemService.findByMetadataField(context, mdf.getMetadataSchema().getName(), mdf.getElement(), mdf.getQualifier(), Item.ANY);
             } if (StringUtils.isNotEmpty(author)) {
                 log.info("Get the items for Author metadata {}", author);
-                MetadataSchema schemaDC = metadataSchemaService.find(context, "dc");
-                MetadataField fieldAuthor = metadataFieldService.findByElement(context, schemaDC, "contributor", "author");
-                QueryPredicate predicate = QueryPredicate.of(fieldAuthor, QueryOperator.MATCHES, ".*" + author + ".*");
-                List<Collection> collections = collectionService.findAll(context);
-                List<UUID> uuids = collections.stream()
-                        .map(Collection::getID)
-                        .toList();
-                items = itemService.findByMetadataQuery(context, List.of(predicate), uuids, 0, -1).iterator();
+                items = this.getAuthorItems(context, author);
             } if (StringUtils.isNotEmpty(endDateString)) {
-                items = null;
+                log.info("Get the items for endDate metadata {}", endDateString);
+                String query = "refterms.dateAccepted:[* TO " + endDateString + "]";
+                items = this.getDateItems(context, query);
             } if (StringUtils.isNotEmpty(startDateString)) {
-                items = null;
+                log.info("Get the items for startDate metadata {}", startDateString);
+                String query = "refterms.dateAccepted:[" + startDateString + " TO *]";
+                items = this.getDateItems(context, query);
             }
 
             log.info("Parse the items");
@@ -123,27 +119,27 @@ public class RefReportRestController implements InitializingBean {
                 log.info("Start Parsing the items: ");
                 Item dspaceItem = items.next();
                 log.info("Parsing the item: {} ", dspaceItem.getName());
-                //Need to tweak this as the authors should be filtered from the query now
+
                 if (StringUtils.isNotEmpty(field)) {
-                    log.info("Adding Item: " + dspaceItem.getName());
+                    log.info("Adding field Item: " + dspaceItem.getName());
                     filteredItems.add(dspaceItem);
-                    log.info("Added Item");
+                    log.info("Added field Item");
                     rows += 1;
-                    //if (checkItem(dspaceItem, author, startDate, endDate)) {
-                    //    log.info("Adding Item: " + dspaceItem.getName());
-                    //    filteredItems.add(dspaceItem);
-                    //    log.info("Added Item");
-                    //    rows += 1;
-                    //}
                 } else if (StringUtils.isNotEmpty(author)) {
-                    log.info("Adding Item: " + dspaceItem.getName());
+                    log.info("Adding Author Item: " + dspaceItem.getName());
                     filteredItems.add(dspaceItem);
-                    log.info("Added Item");
+                    log.info("Added Author Item");
                     rows += 1;
                 } else if (StringUtils.isNotEmpty(endDateString)) {
-
+                    log.info("Adding EndDateString Item: " + dspaceItem.getName());
+                    filteredItems.add(dspaceItem);
+                    log.info("Added EndDateString Item");
+                    rows += 1;
                 } else if (StringUtils.isNotEmpty(startDateString)) {
-
+                    log.info("Adding StartDateString Item: " + dspaceItem.getName());
+                    filteredItems.add(dspaceItem);
+                    log.info("Added StartDateString Item");
+                    rows += 1;
                 } //else {
                     //if (checkItem(dspaceItem, author, startDate, endDate)) {
                     //    log.info("Adding Item: " + dspaceItem.getName());
@@ -183,6 +179,8 @@ public class RefReportRestController implements InitializingBean {
         }
 		catch (IOException ioExc)	{
             log.error("Filter check on item failed because IO.\n" + ioExc.toString());
+        } catch (SearchServiceException e) {
+            throw new RuntimeException(e);
         }
 
         return null;
@@ -254,5 +252,38 @@ public class RefReportRestController implements InitializingBean {
         }
 
         return mdvalue.substring(0, Math.max(0, mdvalue.length()-2));
+    }
+
+    private Iterator<Item> getDateItems(Context context, String query) throws SearchServiceException	{
+        if (query == null) {
+            return new ArrayList<Item>().iterator();
+        }
+
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.setQuery(query);
+        DiscoverResult result = searchService.search(context, null, discoverQuery);
+        List<IndexableObject> objects = result.getIndexableObjects();
+        Iterator<Item> items = objects.stream()
+                .filter(obj -> obj instanceof Item)
+                .map(obj -> (Item) obj)
+                .collect(Collectors.toList()).iterator();
+
+        return items;
+    }
+
+    private Iterator<Item> getAuthorItems(Context context, String author) throws SearchServiceException, SQLException {
+        if (author == null) {
+            return new ArrayList<Item>().iterator();
+        }
+
+        MetadataSchema schemaDC = metadataSchemaService.find(context, "dc");
+        MetadataField fieldAuthor = metadataFieldService.findByElement(context, schemaDC, "contributor", "author");
+        QueryPredicate predicate = QueryPredicate.of(fieldAuthor, QueryOperator.MATCHES, ".*" + author + ".*");
+        List<Collection> collections = collectionService.findAll(context);
+        List<UUID> uuids = collections.stream()
+                .map(Collection::getID)
+                .toList();
+        Iterator<Item> items = itemService.findByMetadataQuery(context, List.of(predicate), uuids, 0, -1).iterator();
+        return items;
     }
 }

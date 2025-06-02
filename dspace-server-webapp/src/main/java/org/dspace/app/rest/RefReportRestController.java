@@ -266,6 +266,10 @@ public class RefReportRestController implements InitializingBean {
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.setQuery(query);
+        discoverQuery.addFilterQueries("inArchive:true");
+        discoverQuery.addFilterQueries("discoverable:true");
+        discoverQuery.addFilterQueries("-withdrawn:true");
+
         log.info("Date Query starting search: {}", discoverQuery.getQuery());
         DiscoverResult result = searchService.search(context, discoverQuery);
         List<IndexableObject> objects = result.getIndexableObjects();

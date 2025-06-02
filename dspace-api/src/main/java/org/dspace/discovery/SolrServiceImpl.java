@@ -763,14 +763,18 @@ public class SolrServiceImpl implements SearchService, IndexingService {
     @Override
     public DiscoverResult search(Context context, DiscoverQuery discoveryQuery)
         throws SearchServiceException {
+        log.info("In SolrServiceImpl.search");
         try {
             if (solrSearchCore.getSolr() == null) {
+                log.info("No Core so empty result");
                 return new DiscoverResult();
             }
 
+            log.info("Leaving SolrServiceImpl.search");
             return retrieveResult(context, discoveryQuery);
 
         } catch (Exception e) {
+            log.info("Caught exception rewrapping and throwing", e);
             throw new org.dspace.discovery.SearchServiceException(e.getMessage(), e);
         }
     }
@@ -979,10 +983,12 @@ public class SolrServiceImpl implements SearchService, IndexingService {
     protected DiscoverResult retrieveResult(Context context, DiscoverQuery query)
         throws SQLException, SolrServerException, IOException, SearchServiceException {
         // we use valid and executeLimit to decide if the solr query need to be re-run if we found some stale objects
+        log.info("In SolrServiceImpl.retrieveResult ");
         boolean valid = false;
         int executionCount = 0;
         DiscoverResult result = null;
         SolrQuery solrQuery = resolveToSolrQuery(context, query);
+        log.info("SolrQuery is {}", solrQuery.getQuery());
         // how many re-run of the query are allowed other than the first run
         int maxAttempts = configurationService.getIntProperty("discovery.removestale.attempts", 3);
         do {
@@ -995,12 +1001,14 @@ public class SolrServiceImpl implements SearchService, IndexingService {
             QueryResponse solrQueryResponse = solrSearchCore.getSolr().query(solrQuery,
                           solrSearchCore.REQUEST_METHOD);
             if (solrQueryResponse != null) {
+                log.info("SolrQueryResponse is not null");
                 result.setSearchTime(solrQueryResponse.getQTime());
                 result.setStart(query.getStart());
                 result.setMaxResults(query.getMaxResults());
                 result.setTotalSearchResults(solrQueryResponse.getResults().getNumFound());
 
                 List<String> searchFields = query.getSearchFields();
+                log.info("About to parse the results {}", result.getTotalSearchResults());
                 for (SolrDocument doc : solrQueryResponse.getResults()) {
                     IndexableObject indexableObject = findIndexableObject(context, doc);
 

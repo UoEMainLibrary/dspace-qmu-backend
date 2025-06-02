@@ -25,6 +25,7 @@ import org.dspace.contentreport.QueryPredicate;
 import org.dspace.contentreport.service.ContentReportService;
 import org.dspace.core.Context;
 import org.dspace.discovery.*;
+import org.dspace.discovery.indexobject.IndexableItem;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ControllerUtils;
@@ -106,11 +107,13 @@ public class RefReportRestController implements InitializingBean {
                 items = this.getAuthorItems(context, author);
             } if (StringUtils.isNotEmpty(endDateString)) {
                 log.info("Get the items for endDate metadata {}", endDateString);
-                String query = "refterms.dateAccepted:[* TO " + endDateString + "]";
+                String query = "refterms.dateAccepted:[* TO " + endDateString + "T00:00:00Z" + "]";
+                log.info("Query {}", query);
                 items = this.getDateItems(context, query);
             } if (StringUtils.isNotEmpty(startDateString)) {
                 log.info("Get the items for startDate metadata {}", startDateString);
-                String query = "refterms.dateAccepted:[" + startDateString + " TO *]";
+                String query = "refterms.dateAccepted:[" + startDateString + "T00:00:00Z" + " TO *]";
+                log.info("Query {}", query);
                 items = this.getDateItems(context, query);
             }
 
@@ -256,12 +259,15 @@ public class RefReportRestController implements InitializingBean {
 
     private Iterator<Item> getDateItems(Context context, String query) throws SearchServiceException	{
         if (query == null) {
+            log.info("Date Query is null");
             return new ArrayList<Item>().iterator();
         }
 
         DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.setQuery(query);
-        DiscoverResult result = searchService.search(context, null, discoverQuery);
+        log.info("Date Query starting search: {}", discoverQuery.getQuery());
+        DiscoverResult result = searchService.search(context, discoverQuery);
         List<IndexableObject> objects = result.getIndexableObjects();
         Iterator<Item> items = objects.stream()
                 .filter(obj -> obj instanceof Item)
@@ -273,6 +279,7 @@ public class RefReportRestController implements InitializingBean {
 
     private Iterator<Item> getAuthorItems(Context context, String author) throws SearchServiceException, SQLException {
         if (author == null) {
+            log.info("Author Query is null");
             return new ArrayList<Item>().iterator();
         }
 

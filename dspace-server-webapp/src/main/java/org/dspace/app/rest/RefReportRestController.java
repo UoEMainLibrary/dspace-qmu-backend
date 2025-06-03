@@ -82,15 +82,6 @@ public class RefReportRestController implements InitializingBean {
         log.info("Start of RefReport");
         log.info("getRefItems field: '{}' author: '{}' startDate: '{}', endDate: '{}'", field, author, startDateString, endDateString);
 
-        //Date startDate = null;
-        //if (startDateString != null) {
-        //    startDate = getDate(startDateString);
-        //}
-        //Date endDate = null;
-        //if(endDateString != null) {
-        //    endDate = getDate(endDateString);
-        //}
-
         //log.info("Dates 'created'");
         int rows = 0;
         FilteredItems report = new FilteredItems();
@@ -118,7 +109,8 @@ public class RefReportRestController implements InitializingBean {
             }
 
             log.info("Parse the items");
-            while (items.hasNext()) {
+            items.forEachRemaining(filteredItems::add);
+            /*while (items.hasNext()) {
                 log.info("Start Parsing the items: ");
                 Item dspaceItem = items.next();
                 log.info("Parsing the item: {} ", dspaceItem.getName());
@@ -152,7 +144,7 @@ public class RefReportRestController implements InitializingBean {
 
                     //}
                 //}
-            }
+            }*/
 
             log.info("We have found {} items", rows);
             log.info("No of filtered Items found: {}", filteredItems.size());
@@ -189,7 +181,7 @@ public class RefReportRestController implements InitializingBean {
         return null;
     }
 
-    private boolean checkItem(Item refItem, String author, Date startDate, Date stopDate)	{
+    /*private boolean checkItem(Item refItem, String author, Date startDate, Date stopDate)	{
         String refAuthor = getMetadata(itemService.getMetadata(refItem, "dc", "contributor","author", Item.ANY));
         Date dateAccepted = getDate(getMetadata(itemService.getMetadata(refItem, "refterms", "dateAccepted",null, Item.ANY)));
 
@@ -205,7 +197,7 @@ public class RefReportRestController implements InitializingBean {
 
         return true;
 
-    }
+    }*/
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -221,7 +213,7 @@ public class RefReportRestController implements InitializingBean {
      * @param dateTxt  String is expected to be yyyy, yyyy-mm, yyyy-mm-dd
      * @return Date
      */
-
+/*
     private Date getDate(String dateTxt)	{
         Date date = null;
 
@@ -241,13 +233,13 @@ public class RefReportRestController implements InitializingBean {
         return date;
 
     }
-
+*/
     /**
      * Explode an array list of Metadatavalues into a String separated by commas
      * @param mdvs array of Metadatavalues
      * @return String
      */
-    private String getMetadata(java.util.List<MetadataValue> mdvs)	{
+    /*private String getMetadata(java.util.List<MetadataValue> mdvs)	{
         StringBuilder mdvalue = new StringBuilder();
 
         for(MetadataValue mdv: mdvs)	{
@@ -255,7 +247,7 @@ public class RefReportRestController implements InitializingBean {
         }
 
         return mdvalue.substring(0, Math.max(0, mdvalue.length()-2));
-    }
+    }*/
 
     private Iterator<Item> getDateItems(Context context, String query) throws SearchServiceException	{
         if (query == null) {

@@ -98,12 +98,12 @@ public class RefReportRestController implements InitializingBean {
                 items = this.getAuthorItems(context, author);
             } if (StringUtils.isNotEmpty(endDateString)) {
                 log.info("Get the items for endDate metadata {}", endDateString);
-                String query = "refterms.dateAccepted:[* TO " + endDateString + "T00:00:00Z" + "]";
+                String query = "refterms.dateAccepted_dt:[* TO " + endDateString + "T00:00:00Z" + "]";
                 log.info("Query {}", query);
                 items = this.getDateItems(context, query);
             } if (StringUtils.isNotEmpty(startDateString)) {
                 log.info("Get the items for startDate metadata {}", startDateString);
-                String query = "refterms.dateAccepted:[" + startDateString + "T00:00:00Z" + " TO *]";
+                String query = "refterms.dateAccepted_dt:[" + startDateString + "T00:00:00Z" + " TO *]";
                 log.info("Query {}", query);
                 items = this.getDateItems(context, query);
             }

@@ -2614,6 +2614,16 @@
 
     </bean>
 
+    <bean class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="dateAccepted" />
+        <property name="metadataFields">
+            <list>
+                <value>refterms.dateAccepted</value>
+            </list>
+        </property>
+        <property name="type" value="date" />
+    </bean>
+
     <bean id="searchFilterContentInOriginalBundle" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="has_content_in_original_bundle"/>
         <property name="metadataFields">

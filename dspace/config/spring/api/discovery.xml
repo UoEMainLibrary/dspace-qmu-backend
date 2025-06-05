@@ -210,6 +210,7 @@
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
                 <ref bean="searchFilterIsJournalOfPublicationRelation"/>
+                <ref bean="searchFilterDateAccepted"/>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -2614,7 +2615,17 @@
 
     </bean>
 
-    <bean class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+    <!--<bean class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="dateAccepted" />
+        <property name="metadataFields">
+            <list>
+                <value>refterms.dateAccepted</value>
+            </list>
+        </property>
+        <property name="type" value="date" />
+    </bean> -->
+
+    <bean id="searchFilterDateAccepted" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
         <property name="indexFieldName" value="dateAccepted" />
         <property name="metadataFields">
             <list>

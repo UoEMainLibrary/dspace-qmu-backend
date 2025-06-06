@@ -2633,6 +2633,7 @@
             </list>
         </property>
         <property name="type" value="date" />
+        <property name="isOpenByDefault" value="true"/>
     </bean>
 
     <bean id="searchFilterContentInOriginalBundle" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">

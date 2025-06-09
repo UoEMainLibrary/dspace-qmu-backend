@@ -98,55 +98,21 @@ public class RefReportRestController implements InitializingBean {
                 items = this.getAuthorItems(context, author);
             } if (StringUtils.isNotEmpty(endDateString)) {
                 log.info("Get the items for endDate metadata {}", endDateString);
-                String query = "refterms.dateAccepted_dt:[* TO " + endDateString + "T00:00:00Z" + "]";
-                //String query = "dc.date.accessioned_dt:[* TO " + endDateString + "T00:00:00Z" + "]";
+                //String query = "refterms.dateAccepted_dt:[* TO " + endDateString + "T00:00:00Z" + "]";
+                String query = "dc.date.accessioned_dt:[* TO " + endDateString + "T00:00:00Z" + "]";
                 log.info("Query {}", query);
                 items = this.getDateItems(context, query);
             } if (StringUtils.isNotEmpty(startDateString)) {
                 log.info("Get the items for startDate metadata {}", startDateString);
-                String query = "refterms.dateAccepted_dt:[" + startDateString + "T00:00:00Z" + " TO *]";
-                //String query = "dc.date.accessioned_dt:[" + startDateString + "T00:00:00Z" + " TO *]";
+                //String query = "refterms.dateAccepted_dt:[" + startDateString + "T00:00:00Z" + " TO *]";
+                String query = "dc.date.accessioned_dt:[" + startDateString + "T00:00:00Z" + " TO *]";
                 log.info("Query {}", query);
                 items = this.getDateItems(context, query);
             }
 
             log.info("Parse the items");
             items.forEachRemaining(filteredItems::add);
-            /*while (items.hasNext()) {
-                log.info("Start Parsing the items: ");
-                Item dspaceItem = items.next();
-                log.info("Parsing the item: {} ", dspaceItem.getName());
-
-                if (StringUtils.isNotEmpty(field)) {
-                    log.info("Adding field Item: " + dspaceItem.getName());
-                    filteredItems.add(dspaceItem);
-                    log.info("Added field Item");
-                    rows += 1;
-                } else if (StringUtils.isNotEmpty(author)) {
-                    log.info("Adding Author Item: " + dspaceItem.getName());
-                    filteredItems.add(dspaceItem);
-                    log.info("Added Author Item");
-                    rows += 1;
-                } else if (StringUtils.isNotEmpty(endDateString)) {
-                    log.info("Adding EndDateString Item: " + dspaceItem.getName());
-                    filteredItems.add(dspaceItem);
-                    log.info("Added EndDateString Item");
-                    rows += 1;
-                } else if (StringUtils.isNotEmpty(startDateString)) {
-                    log.info("Adding StartDateString Item: " + dspaceItem.getName());
-                    filteredItems.add(dspaceItem);
-                    log.info("Added StartDateString Item");
-                    rows += 1;
-                } //else {
-                    //if (checkItem(dspaceItem, author, startDate, endDate)) {
-                    //    log.info("Adding Item: " + dspaceItem.getName());
-                    //    filteredItems.add(dspaceItem);
-                    //    log.info("Added Item");
-                    //    rows += 1;
-
-                    //}
-                //}
-            }*/
+            rows = filteredItems.size();
 
             log.info("We have found {} items", rows);
             log.info("No of filtered Items found: {}", filteredItems.size());
@@ -183,73 +149,11 @@ public class RefReportRestController implements InitializingBean {
         return null;
     }
 
-    /*private boolean checkItem(Item refItem, String author, Date startDate, Date stopDate)	{
-        String refAuthor = getMetadata(itemService.getMetadata(refItem, "dc", "contributor","author", Item.ANY));
-        Date dateAccepted = getDate(getMetadata(itemService.getMetadata(refItem, "refterms", "dateAccepted",null, Item.ANY)));
-
-        if(author != null && !refAuthor.toLowerCase().contains(author.toLowerCase()))	{
-            return false;
-        }
-        else if(startDate != null && (dateAccepted == null || dateAccepted.before(startDate)))	{
-            return false;
-        }
-        else if(stopDate != null && (dateAccepted == null || dateAccepted.after(stopDate)))	{
-            return false;
-        }
-
-        return true;
-
-    }*/
-
     @Override
     public void afterPropertiesSet() throws Exception {
         discoverableEndpointsService
                 .register(this, List.of(Link.of("/api/" + RestModel.REF_REPORT, RestModel.REF_REPORT)));
     }
-
-    /**
-     * Convert a String to a date.
-     *
-     * If string only consists of year or year-month then
-     * the first of the month is appended.
-     * @param dateTxt  String is expected to be yyyy, yyyy-mm, yyyy-mm-dd
-     * @return Date
-     */
-/*
-    private Date getDate(String dateTxt)	{
-        Date date = null;
-
-        if(dateTxt.length() == 4)
-            dateTxt += "-01-01";
-        else if(dateTxt.length() == 7)
-            dateTxt += "-01";
-
-        try {
-            date = new SimpleDateFormat("yyyy-MM-dd").parse(dateTxt);
-
-        }
-        catch (Exception exc)	{
-            log.error("Couldn't convert to date.\n" + exc.toString());
-        }
-
-        return date;
-
-    }
-*/
-    /**
-     * Explode an array list of Metadatavalues into a String separated by commas
-     * @param mdvs array of Metadatavalues
-     * @return String
-     */
-    /*private String getMetadata(java.util.List<MetadataValue> mdvs)	{
-        StringBuilder mdvalue = new StringBuilder();
-
-        for(MetadataValue mdv: mdvs)	{
-            mdvalue.append(mdv.getValue()).append(", ");
-        }
-
-        return mdvalue.substring(0, Math.max(0, mdvalue.length()-2));
-    }*/
 
     private Iterator<Item> getDateItems(Context context, String query) throws SearchServiceException	{
         if (query == null) {
@@ -258,21 +162,21 @@ public class RefReportRestController implements InitializingBean {
         }
 
         DiscoverQuery discoverQuery = new DiscoverQuery();
-        discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.setQuery(query);
-        discoverQuery.addFilterQueries("inArchive:true");
-        discoverQuery.addFilterQueries("discoverable:true");
-        discoverQuery.addFilterQueries("-withdrawn:true");
 
         log.info("Date Query starting search: {}", discoverQuery.getQuery());
         DiscoverResult result = searchService.search(context, discoverQuery);
+        log.info("Date Query finished search: {}", discoverQuery.getQuery());
+        log.info("Found {} results", result.getTotalSearchResults());
         List<IndexableObject> objects = result.getIndexableObjects();
-        Iterator<Item> items = objects.stream()
-                .filter(obj -> obj instanceof Item)
-                .map(obj -> (Item) obj)
-                .collect(Collectors.toList()).iterator();
+        log.info("Found {} objects", objects.size());
+        List<Item> items = objects.stream()
+                .filter(obj -> obj instanceof IndexableItem)
+                .map(obj -> ((IndexableItem) obj).getIndexedObject())
+                .collect(Collectors.toList());
+        log.info("Found {} items", items.size());
 
-        return items;
+        return items.iterator();
     }
 
     private Iterator<Item> getAuthorItems(Context context, String author) throws SearchServiceException, SQLException {

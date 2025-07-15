@@ -18,7 +18,7 @@
     <!-- for handle "default". -->
     <submission-map>
         <!-- Default submission process -->
-        <name-map collection-handle="default" submission-name="traditional"/>
+        <name-map collection-handle="default" submission-name="eresearch"/>
 
         <!-- Sample Entities Collection configuration based on the demo Entities dataset available at:
              https://github.com/DSpace-Labs/AIP-Files/releases/tag/demo-entities-data
@@ -63,14 +63,112 @@
         <name-map collection-entity-type="Journal" submission-name="Journal"/>
         <name-map collection-entity-type="JournalVolume" submission-name="JournalVolume"/>
         <name-map collection-entity-type="JournalIssue" submission-name="JournalIssue"/>
+         -->
 
-        <!-- Example of configuration using a community handle to map an Item Submission Process.
-
-            This configuration maps the submission process to the community's descendant
-            collections that do not have a mapping defined by collection-handle or entity-type
-
-        <name-map community-handle="123456789/1234" submission-name="xxxx"/>
-        -->
+        <name-map collection-handle="20.500.12289/7184" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7185" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7186" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7187" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7188" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7189" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7190" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7191" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7192" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7193" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7300" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7195" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7196" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7197" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7199" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7200" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7201" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7202" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7203" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7204" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/8862" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7205" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7206" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7207" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7208" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7209" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7224" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7210" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7211" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7212" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7213" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7214" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7215" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7216" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7217" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7225" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7218" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7219" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7220" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7221" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7222" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7223" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7228" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7229" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7230" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7231" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7232" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7233" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7234" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7234" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7235" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7236" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7237" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7238" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7239" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7240" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7241" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7242" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7243" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7244" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7245" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7246" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7247" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7248" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7249" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7250" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7251" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7252" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7253" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7254" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7255" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7256" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7257" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7258" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7259" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7260" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7261" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7262" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7263" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7264" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7265" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7266" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7267" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/9601" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/9640" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/9583" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/10564" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/10873" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/11111" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/11123" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/11124" submission-name="thesis" />        
+        <name-map collection-handle="20.500.12289/11064" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/11065" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/11037" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/10912" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/7198" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/12117" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/12042" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/12124" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/12125" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/12149" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/13031" submission-name="thesis" />
+        <name-map collection-handle="20.500.12289/10021" submission-name="research" />
+        <name-map collection-handle="20.500.12289/8901" submission-name="data" />
 
     </submission-map>
 
@@ -241,18 +339,29 @@
             <type>identifiers</type>
         </step-definition>
 
-        <step-definition id="coarnotify">
-            <heading>submit.progressbar.coarnotify</heading>
-            <processing-class>org.dspace.app.rest.submit.step.NotifyStep</processing-class>
-            <type>coarnotify</type>
+        <!-- Custom Definitions -->
+        <!-- eResearch form -->
+        <step-definition id="eresearch">
+            <heading>submit.progressbar.describe.stepone</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
         </step-definition>
-
-        <!-- Detect duplicates step -->
-        <step-definition id="duplicates">
-            <heading>submit.progressbar.duplicates</heading>
-            <processing-class>org.dspace.app.rest.submit.step.DuplicateDetectionStep</processing-class>
-            <type>duplicates</type>
+        <!-- eResearch form end -->
+        <!-- Thesis form -->
+        <step-definition id="thesis">
+            <heading>submit.progressbar.describe.stepone</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
         </step-definition>
+        <!-- Thesis form end -->
+        <!-- Data form -->
+        <step-definition id="data">
+            <heading>submit.progressbar.describe.stepone</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <!-- Data form end -->
+        <!-- Custom Definitions end -->
 
     </step-definitions>
 
@@ -407,18 +516,62 @@
             <!--Step will be to Sign off on the License -->
             <step id="license"/>
         </submission-process>
-        <submission-process name="openairePersonSubmission">
+        <submission-process name="openAIREPersonSubmission">
             <step id="collection"/>
-            <step id="openairePersonForm"/>
+            <step id="openAIREPersonForm"/>
         </submission-process>
-        <submission-process name="openaireProjectSubmission">
+        <submission-process name="openAIREProjectSubmission">
             <step id="collection"/>
-            <step id="openaireProjectForm"/>
+            <step id="openAIREProjectForm"/>
         </submission-process>
-        <submission-process name="openaireOrganizationSubmission">
+        <submission-process name="openAIREOrganizationSubmission">
             <step id="collection"/>
-            <step id="openaireOrganizationForm"/>
+            <step id="openAIREOrganizationForm"/>
         </submission-process>
+
+        <step-definition id="coarnotify">
+            <heading>submit.progressbar.coarnotify</heading>
+            <processing-class>org.dspace.app.rest.submit.step.NotifyStep</processing-class>
+            <type>coarnotify</type>
+        </step-definition>
+
+        <!-- Detect duplicates step -->
+        <step-definition id="duplicates">
+            <heading>submit.progressbar.duplicates</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DuplicateDetectionStep</processing-class>
+            <type>duplicates</type>
+        </step-definition>
+
+        <!-- Custom submission processes -->
+        <submission-process name="eresearch">
+            <step id="collection"/>
+            <step id="eresearch"/>
+            <step id="upload"/>
+            <step id="license"/>
+        </submission-process>
+
+        <submission-process name="thesis">
+            <step id="collection"/>
+            <step id="thesis"/>
+            <step id="upload"/>
+            <step id="license"/>
+        </submission-process>
+
+        <submission-process name="research">
+            <step id="collection"/>
+            <step id="research"/>
+            <step id="upload"/>
+            <step id="license"/>
+        </submission-process>
+
+        <submission-process name="data">
+            <step id="collection"/>
+            <step id="data"/>
+            <step id="upload"/>
+            <step id="license"/>
+        </submission-process>
+        <!-- End of custom submission processes-->
+
     </submission-definitions>
 
 </item-submission>

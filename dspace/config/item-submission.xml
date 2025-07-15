@@ -363,6 +363,13 @@
             <type>submission-form</type>
         </step-definition>
         <!-- Data form end -->
+         <!-- Research form -->
+        <step-definition id="research">
+            <heading>submit.progressbar.describe.stepone</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <!-- Research form end -->
         <!-- Custom Definitions end -->
 
     </step-definitions>

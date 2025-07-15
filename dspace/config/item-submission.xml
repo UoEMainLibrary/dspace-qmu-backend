@@ -350,25 +350,25 @@
         </step-definition>
         <!-- eResearch form end -->
         <!-- Thesis form -->
-        <step-definition id="thesis">
+        <!-- <step-definition id="thesis">
             <heading>submit.progressbar.describe.stepone</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
-        </step-definition>
+        </step-definition> -->
         <!-- Thesis form end -->
         <!-- Data form -->
-        <step-definition id="data">
+        <!-- <step-definition id="data">
             <heading>submit.progressbar.describe.stepone</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
-        </step-definition>
+        </step-definition> -->
         <!-- Data form end -->
          <!-- Research form -->
-        <step-definition id="research">
+        <!-- <step-definition id="research">
             <heading>submit.progressbar.describe.stepone</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
-        </step-definition>
+        </step-definition> -->
         <!-- Research form end -->
         <!-- Custom Definitions end -->
 
@@ -538,7 +538,7 @@
             <step id="license"/>
         </submission-process>
 
-        <submission-process name="thesis">
+        <!-- <submission-process name="thesis">
             <step id="collection"/>
             <step id="thesis"/>
             <step id="upload"/>
@@ -557,7 +557,7 @@
             <step id="data"/>
             <step id="upload"/>
             <step id="license"/>
-        </submission-process>
+        </submission-process> -->
         <!-- End of custom submission processes-->
 
     </submission-definitions>

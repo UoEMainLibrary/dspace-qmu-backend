@@ -1350,7 +1350,7 @@
 
         <!-- Custom Forms -->
         <!-- eResearch Form -->
-        <form name="eresearchform">
+        <form name="eresearch">
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>

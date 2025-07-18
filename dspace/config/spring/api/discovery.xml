@@ -3320,9 +3320,10 @@
                     <value>qmu.author</value>
             </list>
         </property>
+        <property name="facetLimit" value="5"/>
+        <property name="isOpenByDefault" value="true"/>
         <property name="sortOrderSidebar" value="COUNT"/>
         <property name="sortOrderFilterPage" value="COUNT"/>
-        <property name="isOpenByDefault" value="true"/>
     </bean>
     <bean id="searchFilterResearchCentre" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="researchcentre"/>
@@ -3331,9 +3332,10 @@
                     <value>qmu.centre</value>
             </list>
         </property>
+        <property name="facetLimit" value="5"/>
+        <property name="isOpenByDefault" value="true"/>
         <property name="sortOrderSidebar" value="COUNT"/>
         <property name="sortOrderFilterPage" value="COUNT"/>
-        <property name="isOpenByDefault" value="true"/>
     </bean>
     <!-- Custom Search Filters end -->
 

@@ -3305,7 +3305,7 @@
     </bean>
 
     <!-- Custom Search Filters -->
-    <bean id="searchFilterQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <!-- <bean id="searchFilterQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="qmuauthor"/>
         <property name="metadataFields">
             <list>
@@ -3330,7 +3330,7 @@
         <property name="isOpenByDefault" value="true"/>
         <property name="pageSize" value="10"/>
         <property name="exposeMinAndMaxValue" value="true"/>
-    </bean>
+    </bean> -->
     <!-- Custom Search Filters end -->
 
     <!--Sort properties-->
@@ -3453,14 +3453,14 @@
     </bean>
 
     <!-- Custom Search Fields -->
-    <bean id="sortQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+    <!-- <bean id="sortQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="qmu.author"/>
         <property name="defaultSortOrder" value="asc"/>
     </bean>
     <bean id="sortResearchCentre" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="qmu.centre"/>
         <property name="defaultSortOrder" value="asc"/>
-    </bean>
+    </bean> -->
     <!-- Custom Search Fields end -->
 
 

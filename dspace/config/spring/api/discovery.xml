@@ -185,10 +185,12 @@
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
-                <ref bean="searchFilterAuthor" />
-                <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
+                <ref bean="searchFilterAuthor" />
+                <ref bean="searchFilterTitle" />
+                <ref bean="searchFilterQmuAuthor" />
+                <ref bean="searchFilterResearchCentre" />
+                <!-- <ref bean="searchFilterContentInOriginalBundle"/> -->
                 <ref bean="searchFilterEntityType"/>
             </list>
         </property>
@@ -201,6 +203,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterQmuAuthor" />
+                <ref bean="searchFilterResearchCentre" />
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />

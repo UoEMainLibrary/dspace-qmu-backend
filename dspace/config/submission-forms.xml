@@ -1393,19 +1393,6 @@
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>author</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Authors</label>
-                    <input-type>name</input-type>
-                    <hint>Enter the name of the author for the thesis.</hint>
-                    <required>Author is required</required>
-                </field>
-            </row>
-
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
                     <dc-element>description</dc-element>
                     <dc-qualifier>abstract</dc-qualifier>
                     <repeatable>false</repeatable>

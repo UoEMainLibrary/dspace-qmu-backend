@@ -185,9 +185,9 @@
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
-                <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterAuthor" />
-                <ref bean="searchFilterTitle" />
+                <ref bean="searchFilterSubject" />
+                <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterEntityType"/>
             </list>

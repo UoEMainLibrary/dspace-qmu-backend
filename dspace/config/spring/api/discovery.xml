@@ -188,8 +188,8 @@
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterTitle" />
-                <ref bean="searchFilterQmuAuthor" />
-                <ref bean="searchFilterResearchCentre" />
+                <!-- <ref bean="searchFilterQmuAuthor" />
+                <ref bean="searchFilterResearchCentre" /> -->
                 <!-- <ref bean="searchFilterContentInOriginalBundle"/> -->
                 <ref bean="searchFilterEntityType"/>
             </list>
@@ -203,8 +203,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterQmuAuthor" />
-                <ref bean="searchFilterResearchCentre" />
+                <!-- <ref bean="searchFilterQmuAuthor" />
+                <ref bean="searchFilterResearchCentre" /> -->
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
@@ -375,8 +375,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterQmuAuthor" />
-                <ref bean="searchFilterResearchCentre" />
+                <!-- <ref bean="searchFilterQmuAuthor" />
+                <ref bean="searchFilterResearchCentre" /> -->
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterEntityType"/>
             </list>
@@ -390,8 +390,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterQmuAuthor" />
-                <ref bean="searchFilterResearchCentre" />
+                <!-- <ref bean="searchFilterQmuAuthor" />
+                <ref bean="searchFilterResearchCentre" /> -->
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
@@ -3313,7 +3313,7 @@
     </bean>
 
     <!-- Custom Search Filters -->
-    <bean id="searchFilterQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <!-- <bean id="searchFilterQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="qmuauthor"/>
         <property name="metadataFields">
             <list>
@@ -3336,7 +3336,7 @@
         <property name="isOpenByDefault" value="true"/>
         <property name="sortOrderSidebar" value="COUNT"/>
         <property name="sortOrderFilterPage" value="COUNT"/>
-    </bean>
+    </bean> -->
     <!-- Custom Search Filters end -->
 
     <!--Sort properties-->
@@ -3459,7 +3459,7 @@
     </bean>
 
     <!-- Custom Search Fields -->
-    <bean id="sortQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+    <!-- <bean id="sortQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="qmu.author"/>
         <property name="type" value="text"/>
         <property name="defaultSortOrder" value="asc"/>
@@ -3468,7 +3468,7 @@
         <property name="metadataField" value="qmu.centre"/>
         <property name="type" value="text"/>
         <property name="defaultSortOrder" value="asc"/>
-    </bean>
+    </bean> -->
     <!-- Custom Search Fields end -->
 
 

@@ -185,9 +185,9 @@
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
-                <ref bean="searchFilterAuthor" />
-                <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterAuthor" />
+                <ref bean="searchFilterTitle" />
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterEntityType"/>
             </list>
@@ -3305,20 +3305,15 @@
     </bean>
 
     <!-- Custom Search Filters -->
-    <!-- <bean id="searchFilterQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="qmuauthor"/>
         <property name="metadataFields">
             <list>
                     <value>qmu.author</value>
             </list>
         </property>
-        <property name="sortOrderSidebar" value="COUNT"/>
-        <property name="sortOrderFilterPage" value="COUNT"/>
-        <property name="isOpenByDefault" value="true"/>
-        <property name="pageSize" value="10"/>
-        <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
-    <bean id="searchFilterResearchCentre" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <!-- <bean id="searchFilterResearchCentre" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="researchcentre"/>
         <property name="metadataFields">
             <list>
@@ -3453,11 +3448,11 @@
     </bean>
 
     <!-- Custom Search Fields -->
-    <!-- <bean id="sortQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+    <bean id="sortQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="qmu.author"/>
         <property name="defaultSortOrder" value="asc"/>
     </bean>
-    <bean id="sortResearchCentre" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+    <!-- <bean id="sortResearchCentre" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="qmu.centre"/>
         <property name="defaultSortOrder" value="asc"/>
     </bean> -->

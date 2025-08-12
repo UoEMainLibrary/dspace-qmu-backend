@@ -3311,7 +3311,7 @@
         <property name="indexFieldName" value="qmuAuthor"/>
         <property name="metadataFields">
             <list>
-                    <value>qmu.author</value>
+                    <value>dc.contributor.authors</value>
             </list>
         </property>
         <property name="sortOrderSidebar" value="COUNT"/>
@@ -3455,7 +3455,7 @@
 
     <!-- Custom Search Fields -->
     <bean id="sortQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
-        <property name="metadataField" value="qmu.author"/>
+        <property name="metadataField" value="dc.contributor.author"/>
         <property name="defaultSortOrder" value="asc"/>
     </bean>
     <!-- <bean id="sortResearchCentre" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">

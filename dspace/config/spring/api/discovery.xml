@@ -188,6 +188,7 @@
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterTitle" />
+                <ref bean="searchFilterQmuAuthor" />
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterEntityType"/>
             </list>
@@ -201,6 +202,7 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterQmuAuthor" />
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
@@ -3306,12 +3308,16 @@
 
     <!-- Custom Search Filters -->
     <bean id="searchFilterQmuAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
-        <property name="indexFieldName" value="qmuauthor"/>
+        <property name="indexFieldName" value="qmuAuthor"/>
         <property name="metadataFields">
             <list>
                     <value>qmu.author</value>
             </list>
         </property>
+        <property name="sortOrderSidebar" value="COUNT"/>
+        <property name="sortOrderFilterPage" value="COUNT"/>
+        <property name="isOpenByDefault" value="true"/>
+        <property name="type" value="text"/>
     </bean>
     <!-- <bean id="searchFilterResearchCentre" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="researchcentre"/>

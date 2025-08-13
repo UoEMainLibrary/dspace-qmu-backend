@@ -169,7 +169,7 @@
         <name-map collection-handle="20.500.12289/12125" submission-name="theses" />
         <name-map collection-handle="20.500.12289/12149" submission-name="theses" />
         <name-map collection-handle="20.500.12289/13031" submission-name="theses" />
-        <name-map collection-handle="20.500.12289/8901" submission-name="data" />
+        <name-map collection-handle="20.500.12289/8901" submission-name="eData" />
 
     </submission-map>
 
@@ -537,12 +537,12 @@
             <step id="license"/>
         </submission-process>
 
-        <submission-process name="data">
+        <!-- <submission-process name="eData">
             <step id="collection"/>
-            <step id="data"/>
+            <step id="eData"/>
             <step id="upload"/>
             <step id="license"/>
-        </submission-process>
+        </submission-process> -->
         <!-- End of custom submission processes-->
 
     </submission-definitions>

@@ -1969,8 +1969,8 @@
         </form>
         <!-- Theses Form end -->
 
-        <!-- Data Form -->
-        <form name="data">
+        <!-- eData Form -->
+        <!-- <form name="eData">
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -2035,8 +2035,8 @@
                     <required>You must enter at least the year.</required>
                 </field>
             </row>
-        </form>
-        <!-- Data Form end -->
+        </form> -->
+        <!-- eData Form end -->
         <!-- Custom Forms end -->
 
     </form-definitions>

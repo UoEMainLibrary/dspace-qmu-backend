@@ -2257,8 +2257,8 @@
         </form> -->
         <!-- Research Form end -->
 
-        <!-- Thesis Form -->
-        <!-- <form name="thesis">
+        <!-- Theses Form -->
+        <form name="theses">
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -2310,8 +2310,8 @@
                     <required>You must enter at least the year.</required>
                 </field>
             </row>
-        </form> -->
-        <!-- Thesis Form end -->
+        </form>
+        <!-- Theses Form end -->
 
         <!-- Data Form -->
         <!-- <form name="data">

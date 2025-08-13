@@ -169,7 +169,6 @@
         <name-map collection-handle="20.500.12289/12125" submission-name="theses" />
         <name-map collection-handle="20.500.12289/12149" submission-name="theses" />
         <name-map collection-handle="20.500.12289/13031" submission-name="theses" />
-        <name-map collection-handle="20.500.12289/10021" submission-name="research" />
         <name-map collection-handle="20.500.12289/8901" submission-name="data" />
 
     </submission-map>
@@ -357,19 +356,12 @@
         </step-definition>
         <!-- theses form end -->
         <!-- Data form -->
-        <!-- <step-definition id="data">
+        <step-definition id="data">
             <heading>submit.progressbar.describe.stepone</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
-        </step-definition> -->
+        </step-definition>
         <!-- Data form end -->
-         <!-- Research form -->
-        <!-- <step-definition id="research">
-            <heading>submit.progressbar.describe.stepone</heading>
-            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-            <type>submission-form</type>
-        </step-definition> -->
-        <!-- Research form end -->
         <!-- Custom Definitions end -->
 
     </step-definitions>
@@ -545,19 +537,12 @@
             <step id="license"/>
         </submission-process>
 
-        <!-- <submission-process name="research">
-            <step id="collection"/>
-            <step id="research"/>
-            <step id="upload"/>
-            <step id="license"/>
-        </submission-process>
-
         <submission-process name="data">
             <step id="collection"/>
             <step id="data"/>
             <step id="upload"/>
             <step id="license"/>
-        </submission-process> -->
+        </submission-process>
         <!-- End of custom submission processes-->
 
     </submission-definitions>

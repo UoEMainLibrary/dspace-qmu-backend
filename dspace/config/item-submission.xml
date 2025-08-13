@@ -169,7 +169,7 @@
         <name-map collection-handle="20.500.12289/12125" submission-name="theses" />
         <name-map collection-handle="20.500.12289/12149" submission-name="theses" />
         <name-map collection-handle="20.500.12289/13031" submission-name="theses" />
-        <name-map collection-handle="20.500.12289/8901" submission-name="eData" />
+        <name-map collection-handle="20.500.12289/8901" submission-name="edata" />
 
     </submission-map>
 
@@ -356,7 +356,7 @@
         </step-definition>
         <!-- theses form end -->
         <!-- Data form -->
-        <step-definition id="data">
+        <step-definition id="edata">
             <heading>submit.progressbar.describe.stepone</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
@@ -537,9 +537,9 @@
             <step id="license"/>
         </submission-process>
 
-        <!-- <submission-process name="eData">
+        <!-- <submission-process name="edata">
             <step id="collection"/>
-            <step id="eData"/>
+            <step id="edata"/>
             <step id="upload"/>
             <step id="license"/>
         </submission-process> -->

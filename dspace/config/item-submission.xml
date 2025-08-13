@@ -537,12 +537,12 @@
             <step id="license"/>
         </submission-process>
 
-        <!-- <submission-process name="edata">
+        <submission-process name="edata">
             <step id="collection"/>
             <step id="edata"/>
             <step id="upload"/>
             <step id="license"/>
-        </submission-process> -->
+        </submission-process>
         <!-- End of custom submission processes-->
 
     </submission-definitions>

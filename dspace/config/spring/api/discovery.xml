@@ -219,6 +219,7 @@
                     <list>
                         <!-- <ref bean="sortScore" /> -->
                         <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedAsc"/>
                         <ref bean="sortTitle" />
                         <ref bean="sortDateIssued" />
                     </list>

@@ -217,10 +217,10 @@
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <property name="sortFields">
                     <list>
-                        <ref bean="sortScore" />
+                        <!-- <ref bean="sortScore" /> -->
+                        <ref bean="sortDateAccessioned"/>
                         <ref bean="sortTitle" />
                         <ref bean="sortDateIssued" />
-                        <ref bean="sortDateAccessioned"/>
                     </list>
                 </property>
             </bean>
@@ -3301,6 +3301,11 @@
         <property name="metadataField" value="dc.date.accessioned"/>
         <property name="type" value="date"/>
         <property name="defaultSortOrder" value="desc"/>
+    </bean>
+    <bean id="sortDateAccessionedAsc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="dc.date.accessioned"/>
+        <property name="type" value="date"/>
+        <property name="defaultSortOrder" value="asc"/>
     </bean>
 
     <bean id="sortFamilyName" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
